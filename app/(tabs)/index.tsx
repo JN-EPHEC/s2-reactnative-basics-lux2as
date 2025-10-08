@@ -1,4 +1,7 @@
-import { ScrollView, StyleSheet } from "react-native";
+import ProfileCard from "@/components/ProfileCard";
+import TodoItem from '@/components/TodoItem';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const USERS_DATA = [
   { id: '1', nom: 'Alice Martin', email: 'alice.martin@email.com' },
@@ -11,39 +14,48 @@ const USERS_DATA = [
 
 export default function HomeScreen() {
   return (
-      <ScrollView>
-        { /* Render the list of users using the UserItem component */ }
-      </ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <Text style={styles.sectionTitle}>Team Profiles</Text>
+
+      <View style={styles.cardContainer}>
+        <ProfileCard
+          name="Alice"
+          jobTitle="React Native Developer"
+          imageUrl="https://picsum.photos/200/300"
+        />
+        <ProfileCard
+          name="Lucas"
+          jobTitle="React Native Developer"
+          imageUrl="https://picsum.photos/200/300"
+        />
+      </View>
+      <Text style={styles.sectionTitle}>My Todo List</Text>
+
+      <View style={styles.todoContainer}>
+        <TodoItem text="Learn React Native" />
+        <TodoItem text="Build a static UI" />
+        <TodoItem text="Practice with StyleSheet" />
+        <TodoItem text="Commit final code" />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContent: {
+    padding: 20,
     backgroundColor: '#f5f5f5',
   },
-  title: {
+  sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 15,
+    color: '#333',
   },
-  item: {
-    backgroundColor: '#ffffff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ddd',
+  cardContainer: {
+    marginBottom: 30,
   },
-  nom: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  email: {
-    fontSize: 14,
-    color: '#666',
-    marginTop: 4,
+  todoContainer: {
+    marginBottom: 40,
   },
 });
